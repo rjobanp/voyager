@@ -3,6 +3,19 @@ Router.configure({
 
   yieldTemplates: { 
     'header': { to: 'header' }
+  },
+
+
+  onBeforeAction: function(pause) {
+    var user = Meteor.user();
+    var route = this.route.name;
+    if ( route === 'home' && user ) {
+      Router.go('appList');
+      return;
+    } else if ( !user && ['appList', 'addApp', 'app'].indexOf(route) > -1 ) {
+      Router.go('home');
+      return;
+    }
   }
 });
 

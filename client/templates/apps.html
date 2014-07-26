@@ -1,0 +1,41 @@
+<template name="apps">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <h3>My Apps</h3>
+      <table class="table apps-table table-hover">
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Host Names</td>
+            <td>API Key</td>
+            <td>Created At</td>
+            <td>Status</td>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each apps}}
+            <tr>
+              <td>{{name}}</td>
+              <td>{{hostnames}}</td>
+              <td>{{apiKey}}</td>
+              <td>{{createdFormatted}}</td>
+              <td>
+                <div class="{{status}} status-circle">
+                </div>
+              </td>
+            </tr>
+          {{/each}}
+            <tr>
+              <td colspan="2">
+                <input type="text" id="new-app-name" class="form-control" placeholder="New App Name...">
+              </td>
+              <td colspan="3">
+                <div class="btn btn-primary create-new-app">Create</div>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</template>

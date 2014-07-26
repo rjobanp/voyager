@@ -13,9 +13,8 @@ Schema.App = new SimpleSchema({
   name: {
     type: String
   },
-  hostname: {
-    type: String,
-    max: 1000,
+  hostnames: {
+    type: [String],
     optional: true
   },
   userIds: {
