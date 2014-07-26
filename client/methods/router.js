@@ -5,7 +5,6 @@ Router.configure({
     'header': { to: 'header' }
   },
 
-
   onBeforeAction: function(pause) {
     var user = Meteor.user();
     var route = this.route.name;
@@ -16,6 +15,34 @@ Router.configure({
       Router.go('home');
       return;
     }
+  },
+
+  waitOn: function() {
+    return [
+      Meteor.subscribe('userApps')
+    ]
+  }
+});
+
+AppPageController = RouteController.extend({
+  onBeforeAction: function() {
+    if ( !this.appId ) {
+      Router.go('appList');
+      return;
+    }
+
+    Session.set('appId', this.params.appId);
+
+    Session.set('statLimit', 1000);
+    Session.set('logLimit', 50);
+    Session.set('eventLimit', 50);
+  },
+  waitOn: function() {
+    return [
+      Meteor.subscribe('appStats', this.params.appId, Session.get('statLimit')),
+      Meteor.subscribe('appLogs', this.params.appId, Session.get('logLimit')),
+      Meteor.subscribe('appEvents', this.params.appId, Session.get('eventLimit'))
+    ]
   }
 });
 
@@ -38,7 +65,8 @@ Router.map(function() {
 
   this.route('app', {
     path: '/app/:appId',
-    template: 'app'
+    template: 'app',
+    controller: AppPageController
   });
 
 });

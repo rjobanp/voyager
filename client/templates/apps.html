@@ -4,17 +4,19 @@
       <h3>My Apps</h3>
       <table class="table apps-table table-hover">
         <thead>
-          <tr>
-            <td>Name</td>
-            <td>Host Names</td>
-            <td>API Key</td>
-            <td>Created At</td>
-            <td>Status</td>
-          </tr>
+          {{#if apps}}
+            <tr>
+              <td>Name</td>
+              <td>Host Names</td>
+              <td>API Key</td>
+              <td>Created At</td>
+              <td>Status</td>
+            </tr>
+          {{/if}}
         </thead>
         <tbody>
           {{#each apps}}
-            <tr>
+            <tr class="app-row">
               <td>{{name}}</td>
               <td>{{hostnames}}</td>
               <td>{{apiKey}}</td>
