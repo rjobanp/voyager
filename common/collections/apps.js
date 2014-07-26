@@ -4,9 +4,6 @@ if (typeof Schema === 'undefined')
   Schema = {};
 
 Schema.App = new SimpleSchema({
-  _id: {
-    type: String
-  },
   apiKey: {
     type: String
   },

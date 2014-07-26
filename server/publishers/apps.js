@@ -14,9 +14,9 @@ Meteor.publish('appStats', function(appId, statLimit) {
       appId: appId
     }, {
       sort: {
-        time: -1,
-        limit: StatLimit || 1000
-      }
+        createdAt: -1
+      },
+      limit: statLimit || 1000
     });
   } else {
     this.ready();
@@ -29,9 +29,9 @@ Meteor.publish('appLogs', function(appId, logLimit) {
       appId: appId
     }, {
       sort: {
-        time: -1,
-        limit: logLimit || 50
-      }
+        createdAt: -1,
+      },
+      limit: logLimit || 50
     });
   } else {
     this.ready();
@@ -44,9 +44,9 @@ Meteor.publish('appEvents', function(appId, eventLimit) {
       appId: appId
     }, {
       sort: {
-        time: -1,
-        limit: eventLimit || 50
-      }
+        createdAt: -1
+      },
+      limit: eventLimit || 50
     });
   } else {
     this.ready();

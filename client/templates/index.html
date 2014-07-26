@@ -9,6 +9,10 @@
 <template name="layout">
   {{> yield region='header'}}
 
+  <div class="alerts">
+    {{> bootstrapAlerts}}
+  </div>
+
   <div class="container-fluid content-area">
     {{> yield}}
   </div>

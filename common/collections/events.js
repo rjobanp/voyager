@@ -4,14 +4,20 @@ if (typeof Schema === 'undefined')
   Schema = {};
 
 Schema.Event = new SimpleSchema({
-  _id: {
-    type: String
-  },
   appId: {
     type: String
   },
-  time: {
-    type: Number
+  createdAt: {
+    type: Number,
+    autoValue: function() {
+      if (this.isInsert) {
+        return +moment();
+      } else if (this.isUpsert) {
+        return {$setOnInsert: +moment()};
+      } else {
+        this.unset();
+      }
+    }
   },
   type: {
     type: String,

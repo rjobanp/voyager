@@ -4,13 +4,10 @@ if (typeof Schema === 'undefined')
   Schema = {};
 
 Schema.Stat = new SimpleSchema({
-  _id: {
-    type: String
-  },
   appId: {
     type: String
   },
-  time: {
+  createdAt: {
     type: Number
   },
   cpu: {

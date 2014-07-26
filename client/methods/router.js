@@ -26,7 +26,7 @@ Router.configure({
 
 AppPageController = RouteController.extend({
   onBeforeAction: function() {
-    if ( !this.appId ) {
+    if ( !this.params.appId ) {
       Router.go('appList');
       return;
     }
