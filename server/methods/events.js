@@ -1,6 +1,6 @@
 Meteor.methods({
   eventComplete: function(apikey, eventId) {
-    if ( apikey && data && typeof data === 'object' ) {
+    if ( apikey && eventId ) {
       var app = Apps.findOne({
         apiKey: apikey
       });
