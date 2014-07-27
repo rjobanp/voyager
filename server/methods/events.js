@@ -52,8 +52,8 @@ triggerEventFromThreshold = function(threshold, p0, p1) {
   } else {
     // check for a yo username and send a yo
     var app = Apps.findOne(threshold.appId);
-    if ( app && app.yoUsernames && app.yoUsernames.length ) {
-      _.each(app.yoUsernames, function(username){
+    if ( app && app.yoUserNames && app.yoUserNames.length ) {
+      _.each(app.yoUserNames, function(username){
         yo.yo(username, function(err, res, body) {
 
         });
