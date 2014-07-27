@@ -50,15 +50,10 @@ triggerEventFromThreshold = function(threshold, p0, p1) {
   if ( lastEvent && lastEvent.length && lastEvent[0].createdAt > +moment().subtract(5, 'minutes') ) {
     return false
   } else {
+    
     // check for a yo username and send a yo
-    var app = Apps.findOne(threshold.appId);
-    if ( app && app.yoUserNames && app.yoUserNames.length ) {
-      _.each(app.yoUserNames, function(username){
-        yo.yo(username, function(err, res, body) {
+    sendYoToAppUsers(threshold.appId);
 
-        });
-      });
-    };
     // insert the new event
     return VoyagerEvents.insert({
       appId: threshold.appId,

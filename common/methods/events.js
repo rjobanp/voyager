@@ -5,6 +5,11 @@ Meteor.methods({
         direction: params.direction,
         currentValue: params.value
       };
+
+      if ( !this.isSimulation ) {
+        sendYoToAppUsers(params.appId);
+      }
+      
       return VoyagerEvents.insert({
         appId: params.appId,
         type: params.eventName,

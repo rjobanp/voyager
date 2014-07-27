@@ -10,7 +10,7 @@ Meteor.methods({
       return false;
     }
   },
-  updateApp: function(params) {
+  updateAppYos: function(params) {
     if ( this.userId && canViewApp(params.appId, this.userId) ) {
       return Apps.update(params.appId, {
         $addToSet: {
