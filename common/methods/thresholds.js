@@ -13,5 +13,19 @@ Meteor.methods({
     }
 
     return false
+  },
+  deleteThreshold: function(thresholdId) {
+    var threshold = Thresholds.findOne(thresholdId);
+
+    if ( this.userId && canViewApp(threshold.appId, this.userId) ) {
+      return Thresholds.remove(thresholdId);
+    }
+  },
+  updateThreshold: function(thresholdId, updateParams) {
+    var threshold = Thresholds.findOne(thresholdId);
+
+    if ( this.userId && canViewApp(threshold.appId, this.userId) ) {
+      return Thresholds.update(thresholdId, updateParams);
+    }
   }
 });

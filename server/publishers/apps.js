@@ -56,8 +56,7 @@ Meteor.publish('appEvents', function(appId, eventLimit) {
 Meteor.publish('appThresholds', function(appId) {
   if ( this.userId && canViewApp(appId, this.userId) ) {
     return Thresholds.find({
-      appId: appId,
-      active: true
+      appId: appId
     });
   } else {
     this.ready();

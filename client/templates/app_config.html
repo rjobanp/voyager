@@ -23,9 +23,26 @@
       </div>
       <div class="col-sm-10 col-sm-offset-1">
         <h4>CPU</h4>
-
+        <div class="thresholder" data-type="cpu">
+          <div class="thresh-limit start-val">0%</div>
+          <div class="thresh-limit end-val">100%</div>
+          {{#each thresholds 'cpu'}}
+            {{> thresholdVal}}
+          {{/each}}
+        </div>
       </div>
     </div>
-    
   {{/with}}
+</template>
+
+<template name="thresholdVal">
+  <div class="threshold" data-toggle="popover" title=" " style="left: {{value}}%;"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+</template>
+
+<template name="thresholdPopover">
+  {{value}}%<br>
+  Emitted Event:<br>
+  <input class="event-name form-control" value="{{eventName}}" type="text"><br><br>
+  <div class="btn btn-info trigger-threshold">Trigger Threshold Event</div><br><br>
+  <div class="btn btn-danger delete-threshold">Delete</div>
 </template>

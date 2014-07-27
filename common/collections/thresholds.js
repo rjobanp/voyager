@@ -28,13 +28,7 @@ Schema.Threshold = new SimpleSchema({
   },
   eventName: {
     type: String
-  },
-  active: {
-    type: Boolean,
-    autoValue: function() {
-      return true;
-    }
-  } 
+  }
 });
 
 Thresholds.attachSchema(Schema.Threshold);

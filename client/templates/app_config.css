@@ -1,0 +1,33 @@
+.thresholder {
+  width: 80%;
+  margin: 40px 10%;
+  height: 20px;
+  background-color: #e6e6e6;
+  border: 1px solid #adadad;;
+  border-radius: 10px;
+  position: relative;
+}
+.thresholder .thresh-limit {
+  position: absolute;
+  top: 0;
+  width: 10%;
+  overflow: hidden;
+}
+.thresholder .thresh-limit.start-val {
+  left: -10%;
+  text-align: right;
+  padding-right: 10px;
+}
+.thresholder .thresh-limit.end-val {
+  right: -10%;
+  text-align: left;
+  padding-left: 10px;
+}
+.thresholder .threshold {
+  position: absolute;
+  width: 26px;
+  font-size: 26px;
+  height: 26px;
+  top: -6px;
+  margin-left: -13px;
+}
