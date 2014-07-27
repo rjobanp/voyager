@@ -36,6 +36,7 @@ registerAppConnectionState = function(connection, app) {
     });
 
     connection.onClose(function() {
+      sendYoToAppUsers(this._id);
       Apps.update(this._id, {
         $set: {
           lastDisconnected: +moment()

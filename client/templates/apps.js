@@ -11,7 +11,10 @@ Template.apps.helpers({
     return this.lastConnected && moment(this.lastConnected).format('h:mm a MM/DD/YYYY')
   },
   connectionStatus: function() {
-    if ( this.lastConnected && this.lastConnected > Number(this.lastDisconnected) ) {
+    if ( 
+      (this.lastConnected && this.lastConnected > Number(this.lastDisconnected)) || 
+      (this.lastConnected && !this.lastDisconnected)
+     ) {
       return 'green-status'
     }
     return 'red-status'
