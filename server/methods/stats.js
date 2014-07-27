@@ -49,55 +49,46 @@ checkStatForThresholds = function(insertedStat) {
     // Now lets compare this new stat to the last one to see if any thresholds were peaked
     
     // compare cpu
-    Thresholds.find({
-      appId: newStat.appId,
-      type: 'cpu'
-    }).forEach(function(threshold) {
-      var i, p0, p1;
+    if ( lastStat.cpu['5s'] && newStat.cpu['5s'] ) {
       var cpuLen = newStat.cpu['5s'].length;
-      for ( i=0; i < cpuLen; i++ ) {
-        // get the first and last val for this cpu core
-        p0 = lastStat.cpu['5s'][i] * 100;
-        p1 = newStat.cpu['5s'][i] * 100;
+      Thresholds.find({
+        appId: newStat.appId,
+        type: 'cpu'
+      }).forEach(function(threshold) {
+        var i, p0, p1;
+        for ( i=0; i < cpuLen; i++ ) {
+          // get the first and last val for this cpu core
+          p0 = lastStat.cpu['5s'][i] * 100;
+          p1 = newStat.cpu['5s'][i] * 100;
 
-        // if a threshold was crossed
-        if ( _.min(p0,p1) < threshold.value && _.max(p0,p1) > threshold.value ) {
-          triggerEventFromThreshold(threshold, p0, p1);
+          // if a threshold was crossed
+          if ( Math.min(p0,p1) < threshold.value && Math.max(p0,p1) > threshold.value ) {
+            triggerEventFromThreshold(threshold, p0, p1);
+          }
         }
-      }
-    });
+      });
+    }
 
     // compare memory
-    Thresholds.find({
-      appId: newStat.appId,
-      type: 'memory'
-    }).forEach(function(threshold) {
-      var p0, p1;
+    if ( lastStat.memory.system && newStat.memory.system ) {
+      var m0, m1;
       // get the first and last val for the memory
-      p0 = lastStat.memory.system * 100;
-      p1 = newStat.memory.system * 100;
-
-      // if a threshold was crossed
-      if ( _.min(p0,p1) < threshold.value && _.max(p0,p1) > threshold.value ) {
-        triggerEventFromThreshold(threshold, p0, p1);
-      }
-    });
+      m0 = lastStat.memory.system * 100;
+      m1 = newStat.memory.system * 100;
+      Thresholds.find({
+        appId: newStat.appId,
+        type: 'memory'
+      }).forEach(function(threshold) {
+        // if a threshold was crossed
+        if ( Math.min(m0,m1) < threshold.value && Math.max(m0,m1) > threshold.value ) {
+          triggerEventFromThreshold(threshold, m0, m1);
+        }
+      });
+    }
 
     // compare load avg
-    // Thresholds.find({
-    //   appId: newStat.appId,
-    //   type: 'loadAvg'
-    // }).forEach(function(threshold) {
-    //   var p0, p1;
-    //   // get the first and last val for the memory
-    //   p0 = lastStat.loadAvg;
-    //   p1 = newStat.loadAvg;
-
-    //   // if a threshold was crossed
-    //   if ( _.min(p0,p1) < threshold.value && _.max(p0,p1) > threshold.value ) {
-    //     triggerEventFromThreshold(threshold, p0, p1);
-    //   }
-    // });
+    //
+    //
 
   }
 
