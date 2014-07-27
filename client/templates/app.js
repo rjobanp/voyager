@@ -11,7 +11,7 @@ Template.app.rendered = function() {
     width: 900,
     height: 100,
     renderer: 'line',
-    series: new Rickshaw.Series.FixedDuration([{name: "cpu - 1s - 0"}], undefined, {
+    series: new Rickshaw.Series.FixedDuration([{name: "cpu - 5s - 0"}], undefined, {
       timeInterval: 5000,
       maxDataPoints: 100,
       timeBase: new Date().getTime() / 1000
@@ -35,11 +35,23 @@ Template.app.rendered = function() {
     width: 900,
     height: 100,
     renderer: 'line',
-    series: new Rickshaw.Series.FixedDuration([{name: "load - 1m"}], undefined, {
+    series: new Rickshaw.Series.FixedDuration([{name: "loadAvg - 1m"}], undefined, {
       timeInterval: 5000,
       maxDataPoints: 100,
       timeBase: new Date().getTime() / 1000
     }) 
+  } );
+
+  var cpuHoverDetail = new Rickshaw.Graph.HoverDetail( {
+    graph: cpuGraph
+  } );
+
+  var memoryHoverDetail = new Rickshaw.Graph.HoverDetail( {
+    graph: memoryGraph
+  } );
+
+  var loadHoverDetail = new Rickshaw.Graph.HoverDetail( {
+    graph: loadGraph
   } );
 
   // cpuGraph.render();
@@ -63,7 +75,7 @@ Template.app.rendered = function() {
       var dataPoint = '5s';
       for (var index in topics[item][dataPoint]) {
         var key = item + ' - ' + dataPoint + ' - ' + index;
-        addData[key] = topics[item][dataPoint][index];
+        addData[key] = topics[item][dataPoint][index] * 100;
       }
     }
     cpuGraph.series.addData(addData);
@@ -76,7 +88,7 @@ Template.app.rendered = function() {
       for (var item in topics) {
         for (var dataPoint in topics[item]) {          
           var key = item + ' - ' + dataPoint;
-          addData[key] = topics[item][dataPoint];
+          addData[key] = topics[item][dataPoint] * 100;
         }
       }
     memoryGraph.series.addData(addData);
@@ -102,6 +114,23 @@ Template.app.rendered = function() {
       addMemoryData(stat);
       addLoadData(stat);
     }
+  });
+  Deps.autorun(function() {
+    Session.get('resize');
+    cpuGraph.configure({
+      width: $("#cpu-graph").parent().width()
+    });
+    cpuGraph.render();
+
+    memoryGraph.configure({
+      width: $("#memory-graph").parent().width()
+    });
+    memoryGraph.render();
+
+    loadGraph.configure({
+      width: $("#load-graph").parent().width()
+    });
+    loadGraph.render();
   });
 };
 

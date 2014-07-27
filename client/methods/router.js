@@ -72,3 +72,9 @@ Router.map(function() {
   });
 
 });
+
+Meteor.startup(function() {
+  $(window).resize(_.debounce(function() {
+    Session.set("resize", new Date());
+  }, 300));
+});

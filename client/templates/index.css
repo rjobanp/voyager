@@ -8,7 +8,7 @@
 }
 
 .logs {
-    background: black;
+    background: #333;
     padding: 10px;
     border-radius: 3px;
     font-family: monospace;
@@ -20,20 +20,24 @@
 }
 
 .log.debug {
+    color: #5bc0de;
 }
 
 .log.info {
-    color: blue;
+    
+    color: #5cb85c;
 }
 
 .log.warn {
-    color: yellow;
+    color: #f0ad4e;
 }
 
 .log.error {
-    color: red;
+    color: #d9534f;
 }
 
 .log.critical {
-    color: orange;
+    background: #d9534f;
+    color: #f9f2f4;
+    border-radius: 2px;
 }
