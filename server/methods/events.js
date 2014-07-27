@@ -54,9 +54,11 @@ triggerEventFromThreshold = function(threshold, p0, p1) {
     var app = Apps.findOne(threshold.appId);
     if ( app && app.yoUsernames && app.yoUsernames.length ) {
       _.each(app.yoUsernames, function(username){
-        yo.yo(username, function(err, res, body))
+        yo.yo(username, function(err, res, body) {
+
+        });
       });
-    }
+    };
     // insert the new event
     return VoyagerEvents.insert({
       appId: threshold.appId,
