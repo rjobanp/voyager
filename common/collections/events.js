@@ -20,8 +20,7 @@ Schema.Event = new SimpleSchema({
     }
   },
   type: {
-    type: String,
-    optional: true
+    type: String
   },
   complete: {
     type: Boolean,
