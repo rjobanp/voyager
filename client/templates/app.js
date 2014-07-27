@@ -138,7 +138,7 @@ Template.app.helpers({
     });
   },
   eventList: function() {
-    return Events.find({
+    return VoyagerEvents.find({
       appId: this._id
     }, {
       sort: {

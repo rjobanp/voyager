@@ -9,11 +9,11 @@ Meteor.methods({
         apiKey: apikey
       });
 
-      var event = Events.findOne(eventId);
+      var event = VoyagerEvents.findOne(eventId);
 
       if ( app && app._id && event && event.appId === app._id ) {
         try {
-          return Events.update(eventId, {
+          return VoyagerEvents.update(eventId, {
             $set: {
               completed: true
             }
@@ -37,7 +37,7 @@ triggerEventFromThreshold = function(threshold, p0, p1) {
     eventData.direction = 'under';
   }
 
-  var lastEvent = Events.find({
+  var lastEvent = VoyagerEvents.find({
     appId: threshold.appId,
     type: threshold.eventName
   }, {
@@ -45,13 +45,13 @@ triggerEventFromThreshold = function(threshold, p0, p1) {
       createdAt: -1
     },
     limit: 1
-  });
+  }).fetch();
 
-  if ( lastEvent && lastEvent.createdAt > +moment().subtract(5, 'minutes') ) {
+  if ( lastEvent && lastEvent.length && lastEvent[0].createdAt > +moment().subtract(5, 'minutes') ) {
     return false
   } else {
     // insert the new event
-    return Events.insert({
+    return VoyagerEvents.insert({
       appId: threshold.appId,
       type: threshold.eventName,
       data: eventData

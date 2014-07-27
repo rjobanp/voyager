@@ -5,8 +5,8 @@ Meteor.publish('serverEvents', function(apiKey) {
     });
 
     if ( app && app._id ) {
-      return Events.find({
-        appId: appId,
+      return VoyagerEvents.find({
+        appId: app._id,
         completed: false
       }, {
         sort: {
