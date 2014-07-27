@@ -64,7 +64,7 @@ Template.app.rendered = function() {
     appId: Session.get('appId')
   }, { 
     sort: {
-      createdAt: -1
+      createdAt: 1
     }
   });
 
