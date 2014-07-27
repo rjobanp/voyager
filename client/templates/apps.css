@@ -3,6 +3,7 @@
   height: 24px;
   border-radius: 12px;
   background-color: #ddd;
+  display: inline-block;
 }
 .status-circle.green-status {
   background-color: #5cb85c;
