@@ -33,7 +33,7 @@ AppPageController = RouteController.extend({
 
     Session.set('appId', this.params.appId);
 
-    Session.set('statLimit', 1000);
+    Session.set('statLimit', 100);
     Session.set('logLimit', 50);
     Session.set('eventLimit', 50);
   },

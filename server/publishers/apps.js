@@ -16,7 +16,7 @@ Meteor.publish('appStats', function(appId, statLimit) {
       sort: {
         createdAt: -1
       },
-      limit: statLimit || 1000
+      limit: statLimit || 100
     });
   } else {
     this.ready();
