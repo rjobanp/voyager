@@ -6,6 +6,7 @@ Template.app.events({
 
 Template.app.rendered = function() {
   if(typeof Rickshaw === 'undefined') return;
+  if(typeof Rickshaw.Graph === 'undefined') return;
   var cpuGraph = new Rickshaw.Graph( {
     element: document.getElementById("cpu-graph"),
     width: 900,
@@ -108,34 +109,42 @@ Template.app.rendered = function() {
     loadGraph.render();
   };
 
-  observeHandle = curStats.observe({
+  this.observeHandle = curStats.observe({
     added: function(stat) {
       addCpuData(stat);
       addMemoryData(stat);
       addLoadData(stat);
     }
   });
-  Deps.autorun(function() {
+  this.c1 = Deps.autorun(function() {
     Session.get('resize');
-    cpuGraph.configure({
-      width: $("#cpu-graph").parent().width()
-    });
-    cpuGraph.render();
+    if (!!cpuGraph){
+      cpuGraph.configure({
+        width: $("#cpu-graph").parent().width()
+      });
+      cpuGraph.render();
+    }
 
-    memoryGraph.configure({
-      width: $("#memory-graph").parent().width()
-    });
-    memoryGraph.render();
+    if (!!memoryGraph) {
+      memoryGraph.configure({
+        width: $("#memory-graph").parent().width()
+      });
+      memoryGraph.render();
+    }
 
-    loadGraph.configure({
-      width: $("#load-graph").parent().width()
-    });
-    loadGraph.render();
+    if (!!loadGraph) {
+      loadGraph.configure({
+        width: $("#load-graph").parent().width()
+      });
+      loadGraph.render();
+    }
   });
 };
 
 Template.app.destroyed = function() {
-  observeHandle.stop();
+  if (!this.observeHandle) return;
+  this.observeHandle.stop();
+  this.c1.stop();
 };
 
 
