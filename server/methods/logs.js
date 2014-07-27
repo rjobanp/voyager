@@ -1,5 +1,9 @@
 Meteor.methods({
-  log: function(apikey, data) {
+  log: function(params) {
+    params = params || [];
+    var apikey = params[0];
+    var data = params[1];
+
     if ( apikey && data && typeof data === 'object' ) {
       var app = Apps.findOne({
         apiKey: apikey

@@ -1,6 +1,49 @@
 <template name="app">
   {{#with app}}
-    <h2>{{name}}</h2>
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <h2>{{name}}</h2>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <h3>Stats</h3>
+      </div>
+      <div class="col-sm-10 col-sm-offset-1">
+        {{#each stats}}
+          {{cpu}}  {{memory}}  {{load}}
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <h3>Logs</h3>
+      </div>
+      <div class="col-sm-10 col-sm-offset-1">
+        {{#each logs}}
+          {{createdFormatted}}<br>
+          {{level}}<br>
+          {{message}}<br>
+          {{data}}
+        {{/each}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <h3>Events</h3>
+      </div>
+      <div class="col-sm-10 col-sm-offset-1">
+        {{#each events}}
+          {{createdFormatted}}<br>
+          {{type}}<br>
+          {{completed}}<br>
+          {{data}}
+        {{/each}}
+      </div>
+    </div>
+    
   {{/with}}
 </template>

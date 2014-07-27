@@ -1,5 +1,9 @@
 Meteor.methods({
-  eventComplete: function(apikey, eventId) {
+  eventComplete: function(params) {
+    params = params || [];
+    var apikey = params[0];
+    var eventId = params[1];
+
     if ( apikey && eventId ) {
       var app = Apps.findOne({
         apiKey: apikey
