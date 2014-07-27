@@ -52,3 +52,13 @@ Meteor.publish('appEvents', function(appId, eventLimit) {
     this.ready();
   }
 });
+
+Meteor.publish('appThresholds', function(appId) {
+  if ( this.userId && canViewApp(appId, this.userId) ) {
+    return Thresholds.find({
+      appId: appId
+    });
+  } else {
+    this.ready();
+  }
+});

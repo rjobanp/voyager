@@ -1,9 +1,9 @@
-Events = new Meteor.Collection('events');
+Thresholds = new Meteor.Collection('thresholds');
 
 if (typeof Schema === 'undefined')
   Schema = {};
 
-Schema.Event = new SimpleSchema({
+Schema.Threshold = new SimpleSchema({
   appId: {
     type: String
   },
@@ -21,19 +21,15 @@ Schema.Event = new SimpleSchema({
   },
   type: {
     type: String,
-    optional: true
+    allowedValues: ['cpu', 'memory', 'loadAvg']
   },
-  complete: {
-    type: Boolean,
-    autoValue: function() {
-      return false
-    }
+  value: {
+    type: Number,
+    decimal: true
   },
-  data: {
-    type: Object,
-    blackbox: true,
-    optional: true
+  eventName: {
+    type: String
   }
 });
 
-Events.attachSchema(Schema.Event);
+Thresholds.attachSchema(Schema.Threshold);
