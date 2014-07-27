@@ -40,6 +40,10 @@ Schema.App = new SimpleSchema({
   lastDisconnected: {
     type: Number,
     optional: true
+  },
+  yoUserNames: {
+    type: [String],
+    optional: true
   }
 });
 

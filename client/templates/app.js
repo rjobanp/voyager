@@ -175,5 +175,8 @@ Template.app.helpers({
       },
       limit: 10
     });
+  },
+  completeString: function() {
+    return String(this.complete)
   }
 });

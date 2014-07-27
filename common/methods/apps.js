@@ -9,5 +9,16 @@ Meteor.methods({
     } else {
       return false;
     }
+  },
+  updateApp: function(params) {
+    if ( this.userId && canViewApp(params.appId, this.userId) ) {
+      return Apps.update(params.appId, {
+        $addToSet: {
+          yoUserNames: params.yoUserName
+        }
+      });
+    } else {
+      return false;
+    }
   }
 });
