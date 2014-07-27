@@ -15,7 +15,7 @@ Meteor.methods({
         try {
           return VoyagerEvents.update(eventId, {
             $set: {
-              completed: true
+              complete: true
             }
           });
         } catch (e) {
