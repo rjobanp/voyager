@@ -103,8 +103,6 @@ Template.app.rendered = function() {
       addLoadData(stat);
     }
   });
-
-
 };
 
 Template.app.destroyed = function() {

@@ -18,3 +18,22 @@
 .log {
     margin: 0 10px;
 }
+
+.log.debug {
+}
+
+.log.info {
+    color: blue;
+}
+
+.log.warn {
+    color: yellow;
+}
+
+.log.error {
+    color: red;
+}
+
+.log.critical {
+    color: orange;
+}
