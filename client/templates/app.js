@@ -5,8 +5,8 @@ Template.app.events({
 });
 
 Template.app.rendered = function() {
-  if(typeof Rickshaw === 'undefined') return;
-  if(typeof Rickshaw.Graph === 'undefined') return;
+  if(!Rickshaw) return;
+  if(!Rickshaw.Graph) return;
   var cpuGraph = new Rickshaw.Graph( {
     element: document.getElementById("cpu-graph"),
     width: 900,

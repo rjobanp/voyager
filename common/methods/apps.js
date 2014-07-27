@@ -22,7 +22,7 @@ Meteor.methods({
     }
   },
   removeAppYoUser: function(appId, yoUserName) {
-    if (!this.userId) {
+    if (!(this.userId && canViewApp(appId, this.userId))) {
       return false;
     }
     return Apps.update(appId, {
