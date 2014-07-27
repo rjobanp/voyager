@@ -9,6 +9,7 @@
               <td>Name</td>
               <td>API Key</td>
               <td>Created At</td>
+              <td>Last Connected</td>
               <td>Status</td>
             </tr>
           {{/if}}
@@ -19,8 +20,9 @@
               <td>{{name}}</td>
               <td>{{apiKey}}</td>
               <td>{{createdFormatted}}</td>
-              <td>
-                <div class="{{status}} status-circle">
+              <td>{{lastConnectedFormatted}}</td>
+              <td text-align="center">
+                <div class="{{connectionStatus}} status-circle">
                 </div>
               </td>
             </tr>

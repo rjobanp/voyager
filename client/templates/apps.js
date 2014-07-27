@@ -6,6 +6,15 @@ Template.apps.helpers({
   },
   createdFormatted: function() {
     return moment(this.createdAt).format('h:mm a MM/DD/YYYY')
+  },
+  lastConnectedFormatted: function() {
+    return this.lastConnected && moment(this.lastConnected).format('h:mm a MM/DD/YYYY')
+  },
+  connectionStatus: function() {
+    if ( this.lastConnected && this.lastConnected > Number(this.lastDisconnected) ) {
+      return 'green-status'
+    }
+    return 'red-status'
   }
 });
 
