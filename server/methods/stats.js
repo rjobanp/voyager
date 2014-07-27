@@ -87,8 +87,26 @@ checkStatForThresholds = function(insertedStat) {
     }
 
     // compare load avg
-    //
-    //
+    if ( lastStat.loadAvg ) {
+      var loadKeys = ['1m', '5m', '15m'];
+      var loadLen = loadKeys.length;
+      Thresholds.find({
+        appId: newStat.appId,
+        type: 'loadAvg'
+      }).forEach(function(threshold) {
+        var i, l0, l1;
+        for ( i=0; i < loadLen; i++ ) {
+          // get the first and last val for the load avg
+          l0 = lastStat.loadAvg[loadKeys[i]];
+          l1 = newStat.loadAvg[loadKeys[i]];
+
+          // if a threshold was crossed
+          if ( Math.min(l0,l1) < threshold.value && Math.max(l0,l1) > threshold.value ) {
+            triggerEventFromThreshold(threshold, l0, l1);
+          }
+        }
+      });
+    }
 
   }
 
