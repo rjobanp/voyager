@@ -36,7 +36,33 @@ Template.appConfig.events({
         });
       }
     });
-  }
+  },
+  'click .remove-yo-user': function(e,t) {
+    Meteor.call('removeAppYoUser', Session.get('appId'), e.currentTarget.parentNode.textContent,
+      function(error, result) {
+        if (error) {
+          console.log(error);
+          return;
+        }
+      }
+    );
+  },
+  'click .add-yo-user': function(e,t) {
+    var username = $('#add-yo-user-input').val();
+    $('#add-yo-user-input').val("");
+    if (!!username) {
+      Meteor.call('updateAppYos',
+        {
+          appId: Session.get('appId'),
+          yoUserName: username
+        }, function(error, result) {
+          if (error) {
+            console.log(error);
+            return;
+          }
+        });
+    }
+  },
 });
 
 Template.appConfig.helpers({
