@@ -54,7 +54,8 @@ triggerEventFromThreshold = function(threshold, p0, p1) {
     return VoyagerEvents.insert({
       appId: threshold.appId,
       type: threshold.eventName,
-      data: eventData
+      data: eventData,
+      complete: false
     });
   }
 }
