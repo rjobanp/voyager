@@ -155,6 +155,15 @@ Template.app.helpers({
   createdFormatted: function() {
     return moment(this.createdAt).format('h:mm a MM/DD/YYYY')
   },
+  connectionStatus: function() {
+    if ( 
+      (this.lastConnected && this.lastConnected > Number(this.lastDisconnected)) || 
+      (this.lastConnected && !this.lastDisconnected)
+     ) {
+      return 'green-status'
+    }
+    return 'red-status'
+  },
   stats: function() {
     return Stats.find({
       appId: this._id

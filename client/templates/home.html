@@ -4,18 +4,72 @@
       <h2>Welcome to Voyager</h2>
 
       <p class="lead">
-        Voyager is a server monitoring tool for Meteor.<br>
+        Voyager is a <strong>server monitoring</strong> and <strong>reactive load</strong> tool for Meteor.<br>
         Created at the 2014 Meteor Summer Hackathon by:<br>
         Roshan Jobanputra, Harrison Harnisch, and Colin DuRant
       </p>
 
-      <h4>
+      <h3>
         {{#if currentUser}}
           Go to your <a class="apps-button">apps</a>
         {{else}}
           Please login or signup to get started
         {{/if}}
-      </h4>
+      </h3>
+
+      <h3>Getting Started</h3>
+      <div class="col-sm-8 col-sm-offset-2 text-left">
+        Add the Voyager package to your meteor app
+        {{#markdown}}
+          mrt add voyager
+        {{/markdown}}
+        <br><br>
+        Create an app on your VoyagerJS.com dashboard
+        <br><br>
+        In your server side code, add a line to initialize Voyager:
+        {{#markdown}}
+          voyager = new Voyager('http://voyagerjs.com', 'apikey');
+          // get your api key from your voyagerjs.com dashboard
+        {{/markdown}}
+
+        <br><br>
+        Submit logs using:
+        {{#markdown}}
+          voyager.log(level, message, data);
+          // 'level' can be one of 'debug', 'info', 'warn', 'error', 'critical'
+          // 'message' is any string
+          // 'data' is any object
+        {{/markdown}}
+        
+        <br><br>
+        Add thresholds to trigger load events on your VoyagerJS.com app config dashboard.
+        <br>
+        You can name the triggered events anything you want, and multiple thresholds can trigger the same events.
+        <br>
+        Event of a certain name and direction will be triggered at most once every 5 minutes.
+        <br><br>
+        Setup load event handlers in your app using
+
+        {{#markdown}}
+          voyager.on('event_name', function(eventId, eventData) {
+
+            // Do your magic here
+            // Update subs/etc to make your app respond to this event
+
+            // eventData is an object like so = {
+            //   direction: 'over' or 'under',
+            //   currentValue: val
+            // }
+
+            voyager.eventCompleted(eventId); // mark the event as completed
+          });
+        {{/markdown}}
+        <br><br>
+        Add your YO! username to the app config dashboard
+        <br>
+        You'll get yo's for every triggered event and on server disconnect!
+        <br><br>
+      </div>
     </div>
   </div>
 </template>

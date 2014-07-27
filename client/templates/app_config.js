@@ -74,6 +74,15 @@ Template.appConfig.helpers({
       appId: Session.get('appId'),
       type: type
     });
+  },
+  connectionStatus: function() {
+    if ( 
+      (this.lastConnected && this.lastConnected > Number(this.lastDisconnected)) || 
+      (this.lastConnected && !this.lastDisconnected)
+     ) {
+      return 'green-status'
+    }
+    return 'red-status'
   }
 });
 
