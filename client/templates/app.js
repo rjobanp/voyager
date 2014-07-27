@@ -1,3 +1,9 @@
+Template.app.events({
+  'click .config-button': function() {
+    Router.go('appConfig', {appId: this._id});
+  }
+});
+
 Template.app.helpers({
   app: function() {
     return Apps.findOne(Session.get('appId'))
@@ -25,7 +31,7 @@ Template.app.helpers({
       limit: 10
     });
   },
-  events: function() {
+  eventList: function() {
     return Events.find({
       appId: this._id
     }, {

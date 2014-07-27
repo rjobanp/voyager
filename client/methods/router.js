@@ -58,14 +58,15 @@ Router.map(function() {
     template: 'apps'
   });
 
-  this.route('addApp', {
-    path: '/add',
-    template: 'addApp'
-  });
-
   this.route('app', {
     path: '/app/:appId',
     template: 'app',
+    controller: AppPageController
+  });
+
+  this.route('appConfig', {
+    path: '/app/config/:appId',
+    template: 'appConfig',
     controller: AppPageController
   });
 
