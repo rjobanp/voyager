@@ -31,3 +31,7 @@
   top: -6px;
   margin-left: -13px;
 }
+.popover {
+  height: 350px;
+  width: 250px;
+}

@@ -24,7 +24,8 @@ Schema.Threshold = new SimpleSchema({
     allowedValues: ['cpu', 'memory', 'loadAvg']
   },
   value: {
-    type: Number
+    type: Number,
+    decimal: true
   },
   eventName: {
     type: String

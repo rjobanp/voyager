@@ -8,16 +8,20 @@ Template.appConfig.events({
 
     var target = $(e.currentTarget);
 
-    var newPercent = Math.round(Number(e.offsetX)*100/Number(target.width()));
+    if ( target.data('type') === 'loadAvg' ) {
+      var newValue = Math.round(Number(e.offsetX)*60/Number(target.width()))/10;
+    } else {
+      var newValue = Math.round(Number(e.offsetX)*100/Number(target.width()));
+    }
     
     Meteor.call('insertThreshold', {
       appId: Session.get('appId'),
       type: target.data('type'),
-      value: newPercent,
+      value: newValue,
       eventName: target.data('type') + '_event'
     }, function(e,r) {
       if ( !e && r ) {
-        Alerts.add('Threshold added at ' + String(newPercent) + '%!', 'success', {
+        Alerts.add('Threshold added at ' + String(newValue) + '%!', 'success', {
           autoHide: 3000
         });
       } else {
@@ -47,9 +51,20 @@ Template.thresholdVal.events({
   }
 });
 
+Template.thresholdVal.helpers({
+  leftValue: function() {
+    if ( this.type === 'loadAvg' ) {
+      return this.value*100/6;
+    } else {
+      return this.value;
+    }
+  }
+});
+
 Template.thresholdVal.rendered = function() {
   $(this.firstNode).popover({
-    placement: 'top'
+    placement: 'right',
+    template: '<div class="popover" role="tooltip"><div class="arrow"></div><div class="popover-content"></div></div>'
   });
 }
 
@@ -75,23 +90,31 @@ Template.thresholdPopover.events({
       });
     $(t.firstNode).parents('.popover').remove();
   },
-  'blur .event-name': function(e,t) {
-    var eventName = $(e.currentTarget).val();
-    if ( eventName && eventName !== this.eventName ) {
+  'click .update-threshold': function(e,t) {
+    var self = this;
+    var newVal = t.$('.thresh-value').val();
+    var eventName = t.$('.event-name').val();
+
+    params = {};
+    if ( newVal && Number(newVal) !== this.value )
+      params.value = Number(newVal);
+    if ( eventName && eventName !== this.eventName )
+      params.eventName = eventName;
+
+    if ( params && _.keys(params).length > 0 ) {
       Meteor.call('updateThreshold', this._id, {
-        $set: {
-          eventName: eventName
-        }
+        $set: params
       }, function(e,r) {
         if ( !e && r ) {
-          Alerts.add('Threshold event name updated!', 'success',  {
+          Alerts.add('Threshold updated!', 'success',  {
             autoHide: 3000
           });
         } else {
-          Alerts.add('Error updating threshold event name', 'error', {
+          Alerts.add('Error updating threshold', 'error', {
             autoHide: 3000
           });
         }
+        $('#threshold-' + self._id).popover('hide');
       });
     }
   }

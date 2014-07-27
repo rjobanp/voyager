@@ -31,18 +31,41 @@
           {{/each}}
         </div>
       </div>
+      <div class="col-sm-10 col-sm-offset-1">
+        <h4>Memory</h4>
+        <div class="thresholder" data-type="memory">
+          <div class="thresh-limit start-val">0%</div>
+          <div class="thresh-limit end-val">100%</div>
+          {{#each thresholds 'memory'}}
+            {{> thresholdVal}}
+          {{/each}}
+        </div>
+      </div>
+      <div class="col-sm-10 col-sm-offset-1">
+        <h4>Load Average</h4>
+        <div class="thresholder" data-type="loadAvg">
+          <div class="thresh-limit start-val">0</div>
+          <div class="thresh-limit end-val">6.0</div>
+          {{#each thresholds 'loadAvg'}}
+            {{> thresholdVal}}
+          {{/each}}
+        </div>
+      </div>
     </div>
   {{/with}}
 </template>
 
 <template name="thresholdVal">
-  <div class="threshold" data-toggle="popover" title=" " style="left: {{value}}%;"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
+  <div class="threshold" data-toggle="popover" title=" " id="threshold-{{_id}}" style="left: {{leftValue}}%;"><span class="glyphicon glyphicon-exclamation-sign"></span></div>
 </template>
 
 <template name="thresholdPopover">
-  {{value}}%<br>
+  Value:<br>
+  <input class="thresh-value form-control" value="{{value}}" type="number"><br>
   Emitted Event:<br>
-  <input class="event-name form-control" value="{{eventName}}" type="text"><br><br>
+  <input class="event-name form-control" value="{{eventName}}" type="text"><br>
+  <div class="btn btn-primary update-threshold">Save</div>
+  <br><br>
   <div class="btn btn-info trigger-threshold">Trigger Threshold Event</div><br><br>
-  <div class="btn btn-danger delete-threshold">Delete</div>
+  <div class="btn btn-danger delete-threshold">Delete Threshold</div>
 </template>
