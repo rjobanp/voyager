@@ -1,4 +1,4 @@
-Events = new Meteor.Collection('events');
+VoyagerEvents = new Meteor.Collection('voyagerevents');
 
 if (typeof Schema === 'undefined')
   Schema = {};
@@ -35,4 +35,4 @@ Schema.Event = new SimpleSchema({
   }
 });
 
-Events.attachSchema(Schema.Event);
+VoyagerEvents.attachSchema(Schema.Event);

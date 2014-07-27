@@ -40,7 +40,7 @@ Meteor.publish('appLogs', function(appId, logLimit) {
 
 Meteor.publish('appEvents', function(appId, eventLimit) {
   if ( this.userId && canViewApp(appId, this.userId) ) {
-    return Events.find({
+    return VoyagerEvents.find({
       appId: appId
     }, {
       sort: {
