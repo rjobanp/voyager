@@ -21,9 +21,15 @@ Template.appConfig.events({
       eventName: target.data('type') + '_event'
     }, function(e,r) {
       if ( !e && r ) {
-        Alerts.add('Threshold added at ' + String(newValue) + '%!', 'success', {
-          autoHide: 3000
-        });
+        if ( target.data('type') === 'loadAvg' ) {
+          Alerts.add('Threshold added at ' + String(newValue) + '!', 'success', {
+            autoHide: 3000
+          });
+        } else {
+          Alerts.add('Threshold added at ' + String(newValue) + '%!', 'success', {
+            autoHide: 3000
+          });
+        }
       } else {
         Alerts.add('Error adding threshold', 'error',  {
           autoHide: 3000
@@ -117,5 +123,13 @@ Template.thresholdPopover.events({
         $('#threshold-' + self._id).popover('hide');
       });
     }
+  },
+  'click .trigger-threshold': function(e,t) {
+    Meteor.call('addEvent', {
+      appId: this.appId,
+      eventName: this.eventName,
+      direction: 'over',
+      value: this.value
+    });
   }
 });

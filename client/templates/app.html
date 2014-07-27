@@ -42,12 +42,30 @@
         <h3>Events</h3>
       </div>
       <div class="col-sm-10 col-sm-offset-1">
-        {{#each eventList}}
-          {{createdFormatted}}<br>
-          {{type}}<br>
-          {{completed}}<br>
-          {{data}}
-        {{/each}}
+        <table class="table apps-table table-hover">
+          <thead>
+            {{#if eventList}}
+              <tr>
+                <td>Type</td>
+                <td>Created At</td>
+                <td>Direction</td>
+                <td>Value</td>
+                <td>Completed</td>
+              </tr>
+            {{/if}}
+          </thead>
+          <tbody>
+            {{#each eventList}}
+              <tr>
+                <td>{{type}}</td>
+                <td>{{createdFormatted}}</td>
+                <td>{{data.direction}}</td>
+                <td>{{data.currentValue}}</td>
+                <td>{{completeString}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
       </div>
     </div>
     
