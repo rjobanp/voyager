@@ -23,10 +23,7 @@ Schema.Event = new SimpleSchema({
     type: String
   },
   complete: {
-    type: Boolean,
-    autoValue: function() {
-      return false
-    }
+    type: Boolean
   },
   data: {
     type: Object,

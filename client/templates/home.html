@@ -10,7 +10,11 @@
       </p>
 
       <h4>
-        Please <a class="open-login">login</a> or <a class="open-login">signup</a> to get started
+        {{#if currentUser}}
+          Go to your <a class="apps-button">apps</a>
+        {{else}}
+          Please login or signup to get started
+        {{/if}}
       </h4>
     </div>
   </div>
