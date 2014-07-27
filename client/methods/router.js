@@ -41,7 +41,8 @@ AppPageController = RouteController.extend({
     return [
       Meteor.subscribe('appStats', this.params.appId, Session.get('statLimit')),
       Meteor.subscribe('appLogs', this.params.appId, Session.get('logLimit')),
-      Meteor.subscribe('appEvents', this.params.appId, Session.get('eventLimit'))
+      Meteor.subscribe('appEvents', this.params.appId, Session.get('eventLimit')),
+      Meteor.subscribe('appThresholds', this.params.appId)
     ]
   }
 });
