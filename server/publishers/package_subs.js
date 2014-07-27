@@ -1,13 +1,13 @@
 Meteor.publish('serverEvents', function(apiKey) {
-  if ( apiKey ) {
+  if ( !!apiKey ) {
     var app = Apps.findOne({
-      apiKey: apiKey
+      apiKey: apiKey[0]
     });
 
     if ( app && app._id ) {
       return VoyagerEvents.find({
         appId: app._id,
-        completed: false
+        complete: false
       }, {
         sort: {
           createdAt: -1
