@@ -8,7 +8,8 @@
       "collection2": {},
       "moment": {},
       "bootstrap-alerts": {},
-      "rickshaw": {}
+      "rickshaw": {},
+      "npm": {}
     },
     "packages": {
       "iron-router": {
@@ -45,6 +46,11 @@
         "git": "https://github.com/bitIO/meteor-rickshaw.git",
         "tag": "v0.0.2",
         "commit": "3387214eb34482979d65ddde99bad0cf59e5cade"
+      },
+      "npm": {
+        "git": "https://github.com/arunoda/meteor-npm.git",
+        "tag": "v0.2.6",
+        "commit": "177ab6118de5bf8cffb19481343d5762ff7a2aaf"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
