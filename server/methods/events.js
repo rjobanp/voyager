@@ -45,9 +45,9 @@ triggerEventFromThreshold = function(threshold, p0, p1) {
       createdAt: -1
     },
     limit: 1
-  });
+  }).fetch();
 
-  if ( lastEvent && lastEvent.createdAt > +moment().subtract(5, 'minutes') ) {
+  if ( lastEvent && lastEvent.length && lastEvent[0].createdAt > +moment().subtract(5, 'minutes') ) {
     return false
   } else {
     // insert the new event
