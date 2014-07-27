@@ -82,7 +82,7 @@ Template.app.rendered = function() {
     memoryGraph.render();
   };
 
-    var addLoadData = function(stats) {
+  var addLoadData = function(stats) {
     addData = {};
     var topics = _.pick(stats, 'loadAvg');
       for (var item in topics) {
