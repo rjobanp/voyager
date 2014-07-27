@@ -35,3 +35,7 @@
   height: 350px;
   width: 250px;
 }
+
+.remove-yo-user {
+  cursor: pointer;
+}

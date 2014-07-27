@@ -43,15 +43,15 @@ Template.app.rendered = function() {
     }) 
   } );
 
-  var cpuHoverDetail = new Rickshaw.Graph.HoverDetail( {
+  new Rickshaw.Graph.HoverDetail( {
     graph: cpuGraph
   } );
 
-  var memoryHoverDetail = new Rickshaw.Graph.HoverDetail( {
+  new Rickshaw.Graph.HoverDetail( {
     graph: memoryGraph
   } );
 
-  var loadHoverDetail = new Rickshaw.Graph.HoverDetail( {
+  new Rickshaw.Graph.HoverDetail( {
     graph: loadGraph
   } );
 

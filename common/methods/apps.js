@@ -20,5 +20,15 @@ Meteor.methods({
     } else {
       return false;
     }
+  },
+  removeAppYoUser: function(appId, yoUserName) {
+    if (!this.userId) {
+      return false;
+    }
+    return Apps.update(appId, {
+      $pull: {
+        yoUserNames: yoUserName
+      }
+    });
   }
 });
