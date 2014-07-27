@@ -20,7 +20,7 @@ Schema.Stat = new SimpleSchema({
     blackbox: true,
     optional: true
   },
-  load: {
+  loadAvg: {
     type: Object,
     blackbox: true,
     optional: true

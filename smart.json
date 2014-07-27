@@ -5,6 +5,7 @@
     "accounts-ui-bootstrap-3": {},
     "collection2": {},
     "moment": {},
-    "bootstrap-alerts": {}
+    "bootstrap-alerts": {},
+    "rickshaw": {}
   }
 }

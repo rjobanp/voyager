@@ -13,9 +13,12 @@
         <h3>Stats</h3>
       </div>
       <div class="col-sm-10 col-sm-offset-1">
-        {{#each stats}}
-          {{cpu}}  {{memory}}  {{load}}
-        {{/each}}
+        <h4>CPU</h4>
+        <div id="cpu-graph"></div>
+        <h4>Memory</h4>
+        <div id="memory-graph"></div>
+        <h4>Load</h4>
+        <div id="load-graph"></div>
       </div>
     </div>
 
