@@ -1,5 +1,12 @@
 Logs = new Meteor.Collection('logs');
 
+Meteor.startup(function() {
+  if ( Meteor.isServer ) {
+    Logs._ensureIndex({appId: 1});
+    Logs._ensureIndex({appId: 1, createdAt: -1});
+  }
+});
+
 if (typeof Schema === 'undefined')
   Schema = {};
 

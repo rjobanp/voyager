@@ -1,5 +1,13 @@
 VoyagerEvents = new Meteor.Collection('voyagerevents');
 
+Meteor.startup(function() {
+  if ( Meteor.isServer ) {
+    VoyagerEvents._ensureIndex({appId: 1});
+    VoyagerEvents._ensureIndex({appId: 1, createdAt: -1});
+    VoyagerEvents._ensureIndex({appId: 1, type: 1, createdAt: -1});
+  }
+});
+
 if (typeof Schema === 'undefined')
   Schema = {};
 

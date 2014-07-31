@@ -1,5 +1,12 @@
 Thresholds = new Meteor.Collection('thresholds');
 
+Meteor.startup(function() {
+  if ( Meteor.isServer ) {
+    Thresholds._ensureIndex({appId: 1});
+    Thresholds._ensureIndex({appId: 1, type: 1});
+  }
+});
+
 if (typeof Schema === 'undefined')
   Schema = {};
 

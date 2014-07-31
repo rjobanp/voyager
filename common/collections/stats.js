@@ -1,5 +1,12 @@
 Stats = new Meteor.Collection('stats');
 
+Meteor.startup(function() {
+  if ( Meteor.isServer ) {
+    Stats._ensureIndex({appId: 1});
+    Stats._ensureIndex({appId: 1, createdAt: -1});
+  }
+});
+
 if (typeof Schema === 'undefined')
   Schema = {};
 

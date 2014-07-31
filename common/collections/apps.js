@@ -1,5 +1,12 @@
 Apps = new Meteor.Collection('apps');
 
+Meteor.startup(function() {
+  if ( Meteor.isServer ) {
+    Apps._ensureIndex({apiKey: 1});
+    Apps._ensureIndex({userIds: 1});
+  }
+});
+
 if (typeof Schema === 'undefined')
   Schema = {};
 
